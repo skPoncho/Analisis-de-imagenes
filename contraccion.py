@@ -33,6 +33,7 @@ def Contraccion(rutaImagen,num):
                 imagenC.putpixel((x,y),int(res3))
             except:
                 imagenC.putpixel((x,y),CMIN)
+    
     nombre = "imagenContraida_" + str(num)+  ".png"
     imagenC.save(nombre)
 
@@ -89,6 +90,8 @@ def ContraccionColor(rutaImagen,num):
             pixel = tuple([int(res3R),int(res3G),int(res3B)])
             imagenC.putpixel((x,y),pixel)
 
+    
+        
     # histogramImagenC  = imagenC.histogram()
     # histogramaRC = histogramImagenC[0:256]
     # histogramaGC = histogramImagenC[256:512]
@@ -96,6 +99,18 @@ def ContraccionColor(rutaImagen,num):
     nombre = "imagenContraidaColor_" + str(num)+  ".png"
     imagenC.save(nombre)
 
-#Contraccion("imagenA.png")
+def Histograma_gris (rutaimagen):
+    imagen = Image.open(rutaimagen)
+    x = []
+    for i in range (256):
+        x.append(i)
+    H = imagen.histogram()
+    y = H[0:256]
+    plt.cla()
+    plt.plot(x,y)
+    plt.show()
+Contraccion("imagenAC.png",1)
+Histograma_gris("imagenAC.png")
+Histograma_gris("imagenContraida_1.png")
 #Contraccion("imagenAC.png",1)
-ContraccionColor("imagenAC.png",1)
+#ContraccionColor("imagenAC.png",1)
