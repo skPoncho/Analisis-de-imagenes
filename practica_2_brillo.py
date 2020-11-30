@@ -62,12 +62,12 @@ def ecualizacion(img):#obtiene la ecualizacion en escala de grises
 
     imagen_ecualizacion = crear_imagen('L', imagen.size)
 
-    guardar_imagen(imagen_ecualizacion,ecualizacion,"imagenes/ecualizacion_img.jpg")#se guardan los datos de la imagen nueva
+    guardar_imagen(imagen_ecualizacion,ecualizacion,"imagenes/ecualizacion.jpg")#se guardan los datos de la imagen nueva
 
     cerrar_imagen(imagen_ecualizacion)#se cierra la imagen creada
     cerrar_imagen(imagen)
 
-def Contraccion(rutaImagen,num):
+def Contraccion(rutaImagen):
     CMAX = 200
     CMIN = 20
     CFmax = CFmin = 0
@@ -98,7 +98,7 @@ def Contraccion(rutaImagen,num):
             except:
                 imagenC.putpixel((x,y),CMIN)
 
-    nombre = "imagenes/imagenContraida_" + str(num)+  ".jpg"
+    nombre = "imagenes/imagenContraida.jpg"
     imagenC.save(nombre)
     imagenC.show()
 
@@ -205,7 +205,7 @@ def DesplazamientoGris(rutaimagen,desplazamiento):
             if (NG < 0):
                 NG = 0
             imgResultado.putpixel((i,j),NG)
-    imgResultado.save("Desplazamiento.jpg")
+    imgResultado.save("imagenes/Desplazamiento.jpg")
     imgResultado.show()
     #imgResultado.close()
     return imgResultado
@@ -246,15 +246,9 @@ def Histograma_gris (rutaimagen):
     plt.show()
 
 
-#im3 = Expansion("imagenes/bosque.jpg")
-#im3.show()
-#Histograma_gris("imagenes/Expansion.jpg")
 
-
-#Histograma_gris("imagenAC.png")
-#Histograma_gris("imagenContraida_1.png")
-#Histograma_gris("imagenes/bosque.jpg")
-im3 = DesplazamientoGris("imagenes/ecualizacion_img.jpg",-20)
-#Contraccion("imagenes/img_gris.jpg",1)
-ecualizacion("Desplazamiento.jpg")
+#Contraccion("imagenes/img_gris.jpg")#paso 1
+#im3 = DesplazamientoGris("imagenes/imagenContraida.jpg",30)#paso 2
+#ecualizacion("imagenes/Desplazamiento.jpg")#paso 3
+im3 = DesplazamientoGris("imagenes/ecualizacion.jpg",-20)#paso 4
 #Histograma_gris("imagenes/imagenContraida_1.jpg")
