@@ -20,18 +20,21 @@ def guardar_imagen(imagen,datos,nombre_imagen):
 
 def ecualizacion(img):#obtiene la ecualizacion en escala de grises
     imagen = abrir_imagen(img)#se abre la imagen inicial
+    histogramImagen  = imagen.histogram()
     datos = imagen.getdata()#se obtienen las matrices de la imagen
 
+
+    n_g = [256]
     pg_g = [256]
     ecualizacion = []
-    n_g = []
+    n_g = imagen.histogram()#SE SACAN
 
-    for x in range(1,256):
-        contador = 0
-        for y in range(len(datos)):
-            if(datos[y] == x):
-                contador = contador + 1
-        n_g.append(contador)
+    #for x in range(1,256):
+        #contador = 0
+        #for y in range(len(datos)):
+            #if(datos[y] == x):
+                #contador = contador + 1
+        #n_g.append(contador)
 
 
     cant_datos = len(datos)
@@ -47,12 +50,17 @@ def ecualizacion(img):#obtiene la ecualizacion en escala de grises
                 valor = 1
             pg_g.append(valor)
 
+
     ecualizacion = [((6.34133*pg_g[x])**(1/3)) for x in range(len(pg_g))]
 
 
     imagen_ecualizacion = crear_imagen('L', imagen.size)
 
     guardar_imagen(imagen_ecualizacion,ecualizacion,"imagenes/ecualizacion_img.jpg")#se guardan los datos de la imagen nueva
+
+    histogramImagen  = imagen_ecualizacion.histogram()
+    for x in range(len(histogramImagen)):
+        print("valor en  : "+str(x)+" es : "+str(histogramImagen[x]))
 
     cerrar_imagen(imagen_ecualizacion)#se cierra la imagen creada
     cerrar_imagen(imagen)
