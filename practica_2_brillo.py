@@ -191,47 +191,36 @@ def Grises1 (rutaimagen):
    #imagenNegativo.close()
    return imagenNegativo
 
-def Desplazamiento(rutaimagen,desplazamiento):
+def DesplazamientoGris(rutaimagen,desplazamiento):
     imagen = Image.open(rutaimagen)
-    imgResultado = Image.new('RGB', imagen.size)
+    imgResultado = Image.new('L', imagen.size)
 
     ancho,alto = imagen.size
     for i in range (ancho):
         for j in range (alto):
-            r,g,b = imagen.getpixel((i,j))
-            R = r + desplazamiento
-            G = g + desplazamiento
-            B = b + desplazamiento
-            if (R > 255):
-                R = 255
-            if (R < 0):
-                R = 0
-            if (G > 255):
-                G = 255
-            if (G < 0):
-                G = 0
-            if (B > 255):
-                B = 255
-            if (B < 0):
-                B = 0
-            pixel = tuple ([R,G,B])
-            imgResultado.putpixel((i,j),pixel)
+            ng = imagen.getpixel((i,j))
+            NG = ng + desplazamiento
+            if (NG > 255):
+                NG = 255
+            if (NG < 0):
+                NG = 0
+            imgResultado.putpixel((i,j),NG)
     imgResultado.save("Desplazamiento.jpg")
     #imgResultado.show()
     #imgResultado.close()
     return imgResultado
 
-def Expansion(rutaimagen):
+def ExpansionGris(rutaimagen):
     #imagen = Grises1(rutaimagen)
     imagen = Image.open(rutaimagen)
-    imgResultado = Image.new('RGB',imagen.size)
+    imgResultado = Image.new('L',imagen.size)
 
     MAX = 0
     MIN = 255
     ancho,alto = imagen.size
     for i in range (ancho):
         for j in range (alto):
-            r,g,b = imagen.getpixel((i,j))
+            r = imagen.getpixel((i,j))
             if (r < MIN):
                 MIN = r
             if (r > MAX):
@@ -239,10 +228,9 @@ def Expansion(rutaimagen):
 
     for i in range (ancho):
         for j in range (alto):
-            r,g,b = imagen.getpixel((i,j))
+            r = imagen.getpixel((i,j))
             P = round ((r/255)*(MAX-MIN) + MIN)
-            pixel = tuple ([P, P, P])
-            imgResultado.putpixel((i,j),pixel)
+            imgResultado.putpixel((i,j),P)
     imgResultado.save("Expansion.jpg")
     return imgResultado
 
