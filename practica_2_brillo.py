@@ -14,6 +14,7 @@ def cerrar_imagen(imagen):
 def crear_imagen(tipo_imagen,tamanio):
     nueva_imagen = Image.new(tipo_imagen, tamanio)
     return nueva_imagen
+
 def guardar_imagen(imagen,datos,nombre_imagen):
     imagen.putdata(datos)
     imagen.save(nombre_imagen)
@@ -68,7 +69,7 @@ def ecualizacion(img):#obtiene la ecualizacion en escala de grises
 
 def Contraccion(rutaImagen,num):
     CMAX = 180
-    CMIN = 60
+    CMIN = 80
     CFmax = CFmin = 0
 
     imagenA = Image.open(rutaImagen).convert('L')
@@ -97,8 +98,9 @@ def Contraccion(rutaImagen,num):
             except:
                 imagenC.putpixel((x,y),CMIN)
 
-    nombre = "imagenContraida_" + str(num)+  ".png"
+    nombre = "imagenes/imagenContraida_" + str(num)+  ".jpg"
     imagenC.save(nombre)
+    imagenC.show()
 
 def ContraccionColor(rutaImagen,num):
     CMAX = 180
@@ -159,7 +161,7 @@ def ContraccionColor(rutaImagen,num):
     # histogramaRC = histogramImagenC[0:256]
     # histogramaGC = histogramImagenC[256:512]
     # histogramaBC = histogramImagenC[512:768]
-    nombre = "imagenContraidaColor_" + str(num)+  ".png"
+    nombre = "imagenContraidaColor_" + str(num)+  ".jpg"
     imagenC.save(nombre)
 
 def Histograma_gris (rutaimagen):
@@ -255,11 +257,15 @@ def Histograma_gris (rutaimagen):
     plt.plot(x,y)
     plt.show()
 
-#Histograma_gris("imagenes/Amazon.jpg")
-#im3 = Expansion("imagenes/Amazon.jpg")
+
+#im3 = Expansion("imagenes/bosque.jpg")
 #im3.show()
 #Histograma_gris("imagenes/Expansion.jpg")
-#Contraccion("imagenAC.png",1)
+
+
 #Histograma_gris("imagenAC.png")
 #Histograma_gris("imagenContraida_1.png")
 #ecualizacion("imagenes/bosque.jpg")
+#Histograma_gris("imagenes/bosque.jpg")
+Contraccion("imagenes/ecualizacion_img.jpg",1)
+Histograma_gris("imagenes/imagenContraida_1.jpg")
