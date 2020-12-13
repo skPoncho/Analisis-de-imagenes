@@ -66,6 +66,8 @@ def ecualizacion(img):#obtiene la ecualizacion en escala de grises
 
     cerrar_imagen(imagen_ecualizacion)#se cierra la imagen creada
     cerrar_imagen(imagen)
+    Histograma_gris("imagenes/ecualizacion.jpg")
+
 
 def Contraccion(rutaImagen):
     CMAX = 200
@@ -101,6 +103,7 @@ def Contraccion(rutaImagen):
     nombre = "imagenes/imagenContraida.jpg"
     imagenC.save(nombre)
     imagenC.show()
+    Histograma_gris("imagenes/imagenContraida.jpg")
 
 def ContraccionColor(rutaImagen,num):
     CMAX = 180
@@ -207,6 +210,7 @@ def DesplazamientoGris(rutaimagen,desplazamiento):
             imgResultado.putpixel((i,j),NG)
     imgResultado.save("imagenes/Desplazamiento.jpg")
     imgResultado.show()
+    Histograma_gris("imagenes/Desplazamiento.jpg")
     #imgResultado.close()
     return imgResultado
 
