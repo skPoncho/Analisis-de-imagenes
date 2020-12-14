@@ -38,11 +38,11 @@ def ruido(imagen, porcentaje):
 
     return None
 
-foto=Image.open('imagenes/montanas.jpg')
+foto=Image.open('imagenes/foto_escala_grises.jpg')
 
 #llamado a la funcion pasando como parametro la imagen y el
 #porcentaje de ruido deseado
 ruido(foto, 2)
 
-foto.save('imagenes/montanas_ruido.jpg')
+foto.save('imagenes/foto_escala_grises_ruido.jpg')
 foto.close()
