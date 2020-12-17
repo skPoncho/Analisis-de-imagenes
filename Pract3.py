@@ -123,7 +123,7 @@ def FiltroGaussianoC3(rutaimagen):
             imgResultado.putpixel((i,j),g)
     imgResultado.save("Gauss.jpg")
     return imgResultado
-def FiltroGaussianoC3(rutaimagen):
+def FiltroGaussianoG3(rutaimagen):
     imagen = Image.open(rutaimagen)
     imgResultado = Image.new('RGB',imagen.size)
     ancho,alto = imagen.size
@@ -177,45 +177,6 @@ def FiltroGaussianoC5(rutaimagen):
     imgResultado.save("Gauss5.jpg")
     return imgResultado
 
-def FiltroMaxG(rutaimagen):
-    imagen = Image.open(rutaimagen)
-    imgResultado = Image.new('L',imagen.size)
-    ancho,alto = imagen.size
-    g = 0
-    for i in range (ancho):
-        for j in range (alto):
-            V = ObtenerVecindad8(i, j, imagen)
-            g = max(V)
-            imgResultado.putpixel((i,j),g)
-    imgResultado.save("Max.jpg")
-    return imgResultado
-
-def FiltroMin(rutaimagen):
-    imagen = Image.open(rutaimagen)
-    imgResultado = Image.new('L',imagen.size)
-    ancho,alto = imagen.size
-    g = 0
-    for i in range (ancho):
-        for j in range (alto):
-            V = ObtenerVecindad8(i, j, imagen)
-            g = min(V)
-            imgResultado.putpixel((i,j),g)
-    imgResultado.save("Min.jpg")
-    return imgResultado
-
-def FiltroMediana(rutaimagen):
-    imagen = Image.open(rutaimagen)
-    imgResultado = Image.new('L',imagen.size)
-    ancho,alto = imagen.size
-    g = 0
-    for i in range (ancho):
-        for j in range (alto):
-            V = ObtenerVecindad8(i, j, imagen)
-            Vo = sorted(V)
-            g = Vo[4]
-            imgResultado.putpixel((i,j),g)
-    imgResultado.save("Mediana.jpg")
-    return imgResultado
 def FiltroMax(rutaimagen):
     imagen = Image.open(rutaimagen)
     imgResultado = Image.new('L',imagen.size)
@@ -327,7 +288,7 @@ def FiltroModa(rutaimagen):
     imgResultado.save("Moda2.jpg")
     return imgResultado
 
-def FiltroModa(rutaimagen):
+def FiltroModaC(rutaimagen):
     imagen = Image.open(rutaimagen)
     imgResultado = Image.new('RGB',imagen.size)
     ancho,alto = imagen.size
@@ -353,7 +314,8 @@ def FiltroModa(rutaimagen):
             imgResultado.putpixel((i,j),pixel)
     imgResultado.save("Moda2.jpg")
     return imgResultado
-FiltroMediana("imagenes/foto_escala_grises.jpg")    
+FiltroMediana("imagenes/foto_escala_grises.jpg")
+FiltroMediana("imagenes/foto_escala_grises.jpg")
 #imagen = Image.open("Gris.jpg")
 #Aux = ObtenerVecindad58(0,0, imagen)
 #print (Aux)
